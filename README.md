@@ -1,6 +1,6 @@
 # snack_party
 
-Flutter Project
+Flutter Project.
 
 ### 📌프로젝트 개요
 
