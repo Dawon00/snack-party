@@ -51,8 +51,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               onTap: () {
-                Navigator.push(context,
-                    CupertinoPageRoute(builder: (c) => AddPartyScreen()));
+                Navigator.push(
+                    context, CupertinoPageRoute(builder: (c) => PartyScreen()));
               },
             );
           }),
