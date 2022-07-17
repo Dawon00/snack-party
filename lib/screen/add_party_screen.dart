@@ -10,8 +10,8 @@ class AddPartyScreen extends StatefulWidget {
 class _AddPartyScreenState extends State<AddPartyScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('파티 추가 화면 입니다.'),
+    return Scaffold(
+      body: Text('파티 추가 화면'),
     );
   }
 }
