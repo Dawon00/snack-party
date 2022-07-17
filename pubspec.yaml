@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.5
+  flutter_form_builder: ^7.4.0
 
 
   # The following adds the Cupertino Icons font to your application.
