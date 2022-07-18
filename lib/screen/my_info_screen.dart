@@ -16,18 +16,18 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('내 정보'),
+        title: const Text('내 정보'),
         actions: [
           TextButton(
             onPressed: () {},
-            child: Text(
-              "저장",
-              style: TextStyle(color: Colors.white),
-            ),
             style: ButtonStyle(
               overlayColor: MaterialStateProperty.resolveWith(
                 (states) => Colors.white.withOpacity(0.1),
               ),
+            ),
+            child: const Text(
+              "저장",
+              style: TextStyle(color: Colors.white),
             ),
           ),
         ],
@@ -59,10 +59,7 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
                 keyboardType: TextInputType.number,
               ),
               DropdownButtonFormField<String?>(
-                decoration: InputDecoration(),
-                onChanged: (String? newValue) {
-                  print(newValue);
-                },
+                onChanged: (String? newValue) {},
                 items: [
                   null,
                   '컴퓨터전자시스템공학부',

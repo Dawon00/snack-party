@@ -76,10 +76,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 keyboardType: TextInputType.number,
               ),
               DropdownButtonFormField<String?>(
-                decoration: InputDecoration(),
-                onChanged: (String? newValue) {
-                  print(newValue);
-                },
+                onChanged: (String? newValue) {},
                 items: [
                   null,
                   '컴퓨터전자시스템공학부',
