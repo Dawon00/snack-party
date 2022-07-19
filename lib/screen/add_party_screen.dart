@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:snackparty/model/party.dart';
 
 class AddPartyScreen extends StatefulWidget {
   const AddPartyScreen({Key? key}) : super(key: key);
@@ -10,8 +12,15 @@ class AddPartyScreen extends StatefulWidget {
 }
 
 class _AddPartyScreenState extends State<AddPartyScreen> {
+  final controllerPartyTitle = TextEditingController();
+  final controllerDate = TextEditingController();
+  final controllerTime = TextEditingController();
+  final controllerPlace = TextEditingController();
+  final controllerInfo = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    CollectionReference party = FirebaseFirestore.instance.collection('party');
     return Scaffold(
       appBar: AppBar(
         title: Text('파티 생성'),
@@ -30,11 +39,13 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                         labelText: '파티명',
                         hintText: '파티명을 입력하세요',
                       ),
+                      controller: controllerPartyTitle,
                     ),
                     padding: EdgeInsets.all(5),
                   ),
                   Container(
                     child: FormBuilderDateTimePicker(
+                      controller: controllerDate,
                       name: '날짜',
                       inputType: InputType.date,
                       decoration: const InputDecoration(labelText: '날짜'),
@@ -43,6 +54,7 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                   ),
                   Container(
                     child: FormBuilderDateTimePicker(
+                      controller: controllerTime,
                       name: '시간',
                       inputType: InputType.time,
                       decoration: const InputDecoration(labelText: '시간'),
@@ -51,6 +63,7 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                   ),
                   Container(
                     child: TextFormField(
+                      controller: controllerPlace,
                       decoration: InputDecoration(
                         labelText: '장소',
                         hintText: '장소를 입력하세요',
@@ -60,6 +73,7 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                   ),
                   Container(
                     child: TextFormField(
+                      controller: controllerInfo,
                       minLines: 6,
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
@@ -73,8 +87,53 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                   ),
                   SizedBox(
                     width: double.infinity,
-                    child:
-                        ElevatedButton(child: Text('생성하기'), onPressed: () {}),
+                    child: ElevatedButton(
+                        child: Text('생성하기'),
+                        onPressed: () {
+                          final party = Party(
+                            partytitle: controllerPartyTitle.text,
+                            place: controllerPlace.text,
+                            info: controllerInfo.text,
+                            partymember: [],
+                          );
+                          createParty(party);
+                          showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10.0)),
+                                  //Dialog Main Title
+                                  title: Column(
+                                    children: <Widget>[
+                                      new Text("파티 신청 완료"),
+                                    ],
+                                  ),
+                                  //
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        "곧 만나요!",
+                                      ),
+                                    ],
+                                  ),
+                                  actions: <Widget>[
+                                    new FlatButton(
+                                      child: new Text("확인"),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              });
+                        }),
                   ),
                 ],
               ),
@@ -84,4 +143,10 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
       ),
     );
   }
+}
+
+Future createParty(Party party) async {
+  final docParty = FirebaseFirestore.instance.collection('party').doc();
+  final json = party.toJson();
+  await docParty.set(json);
 }
