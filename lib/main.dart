@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:snack_party/screen/home_screen.dart';
-import 'package:snack_party/screen/login_screen.dart';
 import 'package:snack_party/screen/my_info_screen.dart';
+import 'package:snack_party/screen/my_party_screen.dart';
 import 'package:snack_party/widget/bottom_bar.dart';
 
 void main() {
@@ -27,8 +27,7 @@ class _MyAppState extends State<MyApp> {
             physics: NeverScrollableScrollPhysics(),
             children: [
               HomeScreen(),
-              Container(), //my_party_screen
-              // LoginScreen(), //my_info_screen
+              MyPartyScreen(),
               MyInfoScreen(),
             ],
           ),
