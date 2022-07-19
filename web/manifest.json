@@ -1,6 +1,6 @@
 {
-    "name": "snack_party",
-    "short_name": "snack_party",
+    "name": "snackparty",
+    "short_name": "snackparty",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

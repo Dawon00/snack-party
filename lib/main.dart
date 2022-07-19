@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:snack_party/screen/home_screen.dart';
-import 'package:snack_party/screen/my_info_screen.dart';
-import 'package:snack_party/screen/my_party_screen.dart';
-import 'package:snack_party/widget/bottom_bar.dart';
+import 'package:snackparty/screen/home_screen.dart';
+import 'package:snackparty/screen/my_info_screen.dart';
+import 'package:snackparty/screen/my_party_screen.dart';
+import 'package:snackparty/widget/bottom_bar.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+//import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 

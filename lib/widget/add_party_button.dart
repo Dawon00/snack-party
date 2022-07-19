@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:snack_party/screen/add_party_screen.dart';
+import 'package:snackparty/screen/add_party_screen.dart';
 
 class AddPartyButton extends StatefulWidget {
   const AddPartyButton({Key? key}) : super(key: key);

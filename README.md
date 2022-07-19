@@ -1,4 +1,4 @@
-# snack_party
+# snackparty
 
 Flutter Project
 

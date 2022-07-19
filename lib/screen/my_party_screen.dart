@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:snack_party/screen/party_screen.dart';
-import 'package:snack_party/widget/add_party_button.dart';
+import 'package:snackparty/screen/party_screen.dart';
+import 'package:snackparty/widget/add_party_button.dart';
 
 class MyPartyScreen extends StatefulWidget {
   const MyPartyScreen({Key? key}) : super(key: key);
@@ -62,12 +62,12 @@ class _MyPartyScreenState extends State<MyPartyScreen> {
                     ],
                   ),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (c) => PartyScreen(),
-                      ),
-                    );
+                    //Navigator.push(
+                    //context,
+                    //CupertinoPageRoute(
+                    // builder: (c) => PartyScreen(),
+                    //),
+                    //);
                   },
                 );
               },
@@ -109,14 +109,14 @@ class _MyPartyScreenState extends State<MyPartyScreen> {
                       ),
                     ],
                   ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (c) => PartyScreen(),
-                      ),
-                    );
-                  },
+                  //onTap: () {
+                  //Navigator.push(
+                  //context,
+                  //CupertinoPageRoute(
+                  //builder: (c) => PartyScreen(),
+                  //),
+                  //);
+                  //},
                 );
               },
             ),

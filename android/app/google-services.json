@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "385590997457",
+    "project_id": "snack-party",
+    "storage_bucket": "snack-party.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385590997457:android:ae26bd7d760d09b92270f0",
+        "android_client_info": {
+          "package_name": "com.example.snackparty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "385590997457-aro1nbg69h8n0g2f58b53okdal82ateb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI7Z3wRSanOjNpPsxSyA5FdeLx0KL00R0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "385590997457-aro1nbg69h8n0g2f58b53okdal82ateb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "385590997457-7vr95nmbb8mfsbinnbif7ekpmq9fal93.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.snack-party"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snack_party/screen/signup_screen.dart';
+import 'package:snackparty/screen/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

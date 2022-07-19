@@ -1,4 +1,4 @@
-package com.example.snack_party
+package com.example.snackparty
 
 import io.flutter.embedding.android.FlutterActivity
 
