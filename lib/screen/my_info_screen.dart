@@ -1,16 +1,93 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MyInfoScreen extends StatefulWidget {
-  const MyInfoScreen({Key? key}) : super(key: key);
+  final String uid;
+  const MyInfoScreen({Key? key, required this.uid}) : super(key: key);
 
   @override
   State<MyInfoScreen> createState() => _MyInfoScreenState();
 }
 
 class _MyInfoScreenState extends State<MyInfoScreen> {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _admissionYearController =
-      TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController admissionYearController = TextEditingController();
+  TextEditingController majorController = TextEditingController();
+  bool isLoading = false;
+
+  void setData() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      String username = usernameController.text;
+      int admissionYear = int.parse(admissionYearController.text);
+      String major = majorController.text;
+
+      if (username.isNotEmpty &&
+          major.isNotEmpty &&
+          admissionYearController.text.isNotEmpty) {
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(widget.uid)
+            .update({
+          "username": username,
+          "admissionYear": admissionYear,
+          "major": major,
+        });
+
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Success"),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Please enter all the fields"),
+          ),
+        );
+      }
+    } catch (err) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(err.toString()),
+        ),
+      );
+    }
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  void getData() async {
+    try {
+      var userSnap = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(widget.uid)
+          .get();
+
+      usernameController.text = userSnap.data()!['username'];
+      admissionYearController.text =
+          userSnap.data()!['admissionYear'].toString();
+      majorController.text = userSnap.data()!['major'];
+    } catch (err) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(err.toString()),
+        ),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +95,20 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
       appBar: AppBar(
         title: const Text('내 정보'),
         actions: [
+          // 저장 버튼
           TextButton(
-            onPressed: () {},
+            onPressed: setData,
             style: ButtonStyle(
               overlayColor: MaterialStateProperty.resolveWith(
                 (states) => Colors.white.withOpacity(0.1),
               ),
             ),
-            child: const Text(
-              "저장",
-              style: TextStyle(color: Colors.white),
-            ),
+            child: isLoading
+                ? const CircularProgressIndicator()
+                : const Text(
+                    "저장",
+                    style: TextStyle(color: Colors.white),
+                  ),
           ),
         ],
       ),
@@ -48,32 +128,22 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
                   hintText: 'username',
                 ),
                 keyboardType: TextInputType.emailAddress,
-                controller: _usernameController,
+                controller: usernameController,
               ),
-              // admission year and major
+              // admission year
               TextField(
                 decoration: const InputDecoration(
                   hintText: 'Enter your year of admisison',
                 ),
-                controller: _admissionYearController,
+                controller: admissionYearController,
                 keyboardType: TextInputType.number,
               ),
-              DropdownButtonFormField<String?>(
-                onChanged: (String? newValue) {},
-                items: [
-                  null,
-                  '컴퓨터전자시스템공학부',
-                  '컴퓨터공학과',
-                ].map<DropdownMenuItem<String?>>((String? i) {
-                  return DropdownMenuItem<String?>(
-                    value: i,
-                    child: Text({
-                          '컴퓨터전자시스템공학부': '컴퓨터전자시스템공학부',
-                          '컴퓨터공학과': '컴퓨터공학과'
-                        }[i] ??
-                        '비공개'),
-                  );
-                }).toList(),
+              // major
+              TextField(
+                decoration: const InputDecoration(
+                  hintText: 'Enter your major',
+                ),
+                controller: majorController,
               ),
             ],
           ),
