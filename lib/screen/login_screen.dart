@@ -31,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
         await auth.signInWithEmailAndPassword(email: email, password: password);
 
         // HomeScreen으로 화면 전환
+        if (!mounted) return;
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: ((context) => const HomeScreen()),
