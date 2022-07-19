@@ -28,9 +28,16 @@ class Party {
         //uid = map['uid'],
         partymember = map['partymember'];
 
-  // Party.fromSnapshot(DocumentSnapshot snapshot)
-  //    : this.fromMap(snapshot.data() as Map<String, dynamic>,
-  //         reference: snapshot.reference);
+  static Party fromSnap(DocumentSnapshot snap) {
+    var snapshot = snap.data() as Map<String, dynamic>;
+
+    return Party(
+      partytitle: snapshot["partytitle"],
+      place: snapshot["place"],
+      info: snapshot["info"],
+      partymember: snapshot["partymember"],
+    );
+  }
 
   Party fromJson(Map<String, dynamic> json) => Party(
       partytitle: json['partytitle'],
