@@ -57,6 +57,7 @@ class _SignupScreenState extends State<SignupScreen> {
           admissionYear: admissionYear,
           major: major,
           uid: cred.user!.uid,
+          parties: [],
         );
         await firestore
             .collection('users')

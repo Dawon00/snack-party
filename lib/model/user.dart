@@ -6,6 +6,7 @@ class User {
   final int admissionYear;
   final String major;
   final String uid;
+  final List parties;
 
   const User({
     required this.username,
@@ -13,6 +14,7 @@ class User {
     required this.admissionYear,
     required this.major,
     required this.uid,
+    required this.parties,
   });
 
   // static User fromSnap(DocumentSnapshot snap) {
@@ -33,5 +35,6 @@ class User {
         "admissionYear": admissionYear,
         "major": major,
         "uid": uid,
+        "parties": parties,
       };
 }
