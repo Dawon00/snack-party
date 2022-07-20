@@ -16,7 +16,6 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  // final TextEditingController _confirmPasswordController = TextEditingController();
   final TextEditingController _admissionYearController =
       TextEditingController();
   final TextEditingController _majorController = TextEditingController();
@@ -32,7 +31,6 @@ class _SignupScreenState extends State<SignupScreen> {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
       String email = _emailController.text;
       String password = _passwordController.text;
-      // String confirmPassword = _confirmPasswordController.text;
       String username = _usernameController.text;
       int admissionYear = int.parse(_admissionYearController.text);
       String major = _majorController.text;
@@ -41,7 +39,6 @@ class _SignupScreenState extends State<SignupScreen> {
       if (username.isNotEmpty &&
           email.isNotEmpty &&
           password.isNotEmpty &&
-          // confirmPassword.isNotEmpty &&
           _admissionYearController.text.isNotEmpty &&
           major.isNotEmpty) {
         // Authentication에 user 추가
@@ -139,14 +136,6 @@ class _SignupScreenState extends State<SignupScreen> {
                 controller: _passwordController,
                 obscureText: true,
               ),
-              // confirm password
-              // TextField(
-              //   decoration: const InputDecoration(
-              //     hintText: 'Enter your password again',
-              //   ),
-              //   controller: _confirmPasswordController,
-              //   obscureText: true,
-              // ),
               // admission year
               TextField(
                 decoration: const InputDecoration(
@@ -235,7 +224,6 @@ class _SignupScreenState extends State<SignupScreen> {
     _usernameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-    // _confirmPasswordController.dispose();
     _admissionYearController.dispose();
     _majorController.dispose();
   }

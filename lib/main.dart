@@ -1,15 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:snackparty/screen/home_screen.dart';
 import 'package:snackparty/screen/index_screen.dart';
 import 'package:snackparty/screen/login_screen.dart';
-// import 'package:snackparty/screen/my_info_screen.dart';
-// import 'package:snackparty/screen/my_party_screen.dart';
-// import 'package:snackparty/screen/signup_screen.dart';
-// import 'package:snackparty/widget/bottom_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-//import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,21 +51,6 @@ class _MyAppState extends State<MyApp> {
           return const LoginScreen();
         },
       ),
-      // home: DefaultTabController(
-      //   length: 3,
-      //   child: Scaffold(
-      //     body: TabBarView(
-      //       physics: NeverScrollableScrollPhysics(),
-      //       children: [
-      //         HomeScreen(),
-      //         MyPartyScreen(),
-      //         // MyInfoScreen(),
-      //         LoginScreen(),
-      //       ],
-      //     ),
-      //     bottomNavigationBar: Bottom(),
-      //   ),
-      // ),
     );
   }
 }

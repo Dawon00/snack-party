@@ -52,10 +52,11 @@ class _MyPartyScreenState extends State<MyPartyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('내 파티'),
+        title: const Text('내 파티'),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.search)),
-          IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.bell_fill))
+          IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.search)),
+          IconButton(
+              onPressed: () {}, icon: const Icon(CupertinoIcons.bell_fill))
         ],
       ),
       body: FutureBuilder(
@@ -79,7 +80,7 @@ class _MyPartyScreenState extends State<MyPartyScreen> {
                     child: CircularProgressIndicator(),
                   ),
       ),
-      floatingActionButton: AddPartyButton(),
+      floatingActionButton: const AddPartyButton(),
     );
   }
 }
