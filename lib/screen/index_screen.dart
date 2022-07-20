@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:snackparty/screen/home_screen.dart';
 import 'package:snackparty/screen/my_info_screen.dart';
@@ -36,7 +37,9 @@ class _IndexScreenState extends State<IndexScreen> {
       },
       children: <Widget>[
         HomeScreen(),
-        MyPartyScreen(),
+        MyPartyScreen(
+          uid: FirebaseAuth.instance.currentUser!.uid,
+        ),
         Scaffold(
           body: Center(
             child: Text('내 정보 화면'),
