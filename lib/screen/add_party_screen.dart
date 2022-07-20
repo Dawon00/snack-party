@@ -108,7 +108,7 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                                   //Dialog Main Title
                                   title: Column(
                                     children: <Widget>[
-                                      new Text("파티 신청 완료"),
+                                      new Text("파티 생성"),
                                     ],
                                   ),
                                   //
@@ -118,7 +118,7 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
-                                        "곧 만나요!",
+                                        "완료되었습니다.",
                                       ),
                                     ],
                                   ),

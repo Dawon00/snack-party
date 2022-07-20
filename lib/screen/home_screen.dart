@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
           final docs = snapshot.data!.docs;
           return ListView.builder(
+            padding: EdgeInsets.all(10),
             itemCount: docs.length,
             itemBuilder: (context, index) {
               return GestureDetector(
@@ -54,7 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: EdgeInsets.all(8),
                         child: Column(
                           children: [
-                            Text(docs[index]['partytitle'] + '(신청 인원 / 가능 인원)'),
+                            Text(
+                                docs[index]['partytitle'] + ' (신청 인원 / 가능 인원)'),
                             Text('00 : 00 ' + docs[index]['place']),
                           ],
                         ))
