@@ -96,7 +96,6 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                             place: controllerPlace.text,
                             info: controllerInfo.text,
                             uid: UniqueKey().toString(),
-                            author: FirebaseAuth.instance.currentUser!.uid,
                             partymember: [],
                           );
                           createParty(party);
