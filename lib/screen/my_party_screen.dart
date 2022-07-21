@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:snackparty/model/party.dart';
+import 'package:snackparty/screen/party_screen.dart';
 import 'package:snackparty/widget/add_party_button.dart';
 
 class MyPartyScreen extends StatefulWidget {
@@ -65,14 +66,28 @@ class _MyPartyScreenState extends State<MyPartyScreen> {
             snapshot.hasData
                 ? ListView.builder(
                     itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) => Card(
-                      margin: const EdgeInsets.all(10),
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.all(10),
-                        title:
-                            Text(snapshot.data![index].toJson()['partytitle']),
-                        subtitle: Text(
-                            "${snapshot.data![index].toJson()['place']} / time"),
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) {
+                              return PartyScreen(
+                                party: snapshot.data![index],
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      child: Card(
+                        margin: const EdgeInsets.all(10),
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(10),
+                          title: Text(
+                              snapshot.data![index].toJson()['partytitle']),
+                          subtitle: Text(
+                              "${snapshot.data![index].toJson()['place']} / time"),
+                        ),
                       ),
                     ),
                   )
