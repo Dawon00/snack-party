@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:snackparty/model/party.dart';
-import 'package:snackparty/model/user.dart';
+import 'package:snackparty/model/user.dart' as model;
 import 'package:snackparty/screen/home_screen.dart';
 
 class PartyScreen extends StatefulWidget {
@@ -65,16 +65,25 @@ class _PartyScreenState extends State<PartyScreen> {
         padding: EdgeInsets.all(20),
         child: ElevatedButton(
           child: Text('신청 하기'),
-          onPressed: () {
+          onPressed: () async {
+            //user 모델에 신청한 party 추가
             CollectionReference user = firestore.collection('users');
             user.doc(FirebaseAuth.instance.currentUser!.uid).update({
               'parties': FieldValue.arrayUnion([widget.party.uid])
             });
+            //party 모델에 신청한 user 추가
             CollectionReference party = firestore.collection('party');
+
+            final DocumentSnapshot snapshot = await firestore
+                .collection('users')
+                .doc(FirebaseAuth.instance.currentUser!.uid)
+                .get();
+
             party.doc(widget.party.uid).update({
               'partymember': FieldValue.arrayUnion(
-                  [FirebaseAuth.instance.currentUser!.uid])
+                  [model.User.fromSnap(snapshot).toJson()['username']])
             });
+
             showDialog(
                 barrierDismissible: false,
                 context: context,
