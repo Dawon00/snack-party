@@ -70,6 +70,11 @@ class _PartyScreenState extends State<PartyScreen> {
             user.doc(FirebaseAuth.instance.currentUser!.uid).update({
               'parties': FieldValue.arrayUnion([widget.party.uid])
             });
+            CollectionReference party = firestore.collection('party');
+            party.doc(widget.party.uid).update({
+              'partymember': FieldValue.arrayUnion(
+                  [FirebaseAuth.instance.currentUser!.uid])
+            });
             showDialog(
                 barrierDismissible: false,
                 context: context,
