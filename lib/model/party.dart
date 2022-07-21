@@ -5,7 +5,7 @@ class Party {
   //final DateTime datetime;
   final String place;
   final String info;
-  //final String uid;
+  final String uid;
   final List partymember;
 
   Party({
@@ -13,7 +13,7 @@ class Party {
     //required this.datetime,
     required this.place,
     required this.info,
-    //required this.uid,
+    required this.uid,
     required this.partymember,
   });
 
@@ -23,7 +23,7 @@ class Party {
         //datetime = DateTime.parse(map['datetime']),
         place = map['place'],
         info = map['info'],
-        //uid = map['uid'],
+        uid = map['uid'],
         partymember = map['partymember'];
 
   static Party fromSnap(DocumentSnapshot snap) {
@@ -33,6 +33,7 @@ class Party {
       partytitle: snapshot["partytitle"],
       place: snapshot["place"],
       info: snapshot["info"],
+      uid: snapshot['uid'],
       partymember: snapshot["partymember"],
     );
   }
@@ -41,6 +42,7 @@ class Party {
       partytitle: json['partytitle'],
       place: json['place'],
       info: json['age'],
+      uid: json['uid'],
       partymember: json['partymember']);
 
   Map<String, dynamic> toJson() => {
@@ -48,7 +50,7 @@ class Party {
         //"datetime": datetime,
         "place": place,
         "info": info,
-        //"uid": uid,
+        "uid": uid,
         "partymember": partymember,
       };
 

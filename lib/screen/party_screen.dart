@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:snackparty/model/party.dart';
+import 'package:snackparty/model/user.dart';
+import 'package:snackparty/screen/home_screen.dart';
 
 class PartyScreen extends StatefulWidget {
   final Party party;
@@ -59,11 +63,48 @@ class _PartyScreenState extends State<PartyScreen> {
       ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(20),
-        child: RaisedButton(
-          onPressed: () {},
-          color: Colors.blue,
-          textColor: Colors.white,
+        child: ElevatedButton(
           child: Text('신청 하기'),
+          onPressed: () {
+            CollectionReference user = firestore.collection('users');
+            user.doc(FirebaseAuth.instance.currentUser!.uid).update({
+              'parties': FieldValue.arrayUnion([widget.party.uid])
+            });
+            showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    //Dialog Main Title
+                    title: Column(
+                      children: <Widget>[
+                        new Text("파티 신청"),
+                      ],
+                    ),
+                    //
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "완료되었습니다.",
+                        ),
+                      ],
+                    ),
+                    actions: <Widget>[
+                      new FlatButton(
+                        child: new Text("확인"),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  );
+                });
+          },
         ),
       ),
     );

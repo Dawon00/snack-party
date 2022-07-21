@@ -94,6 +94,7 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                             partytitle: controllerPartyTitle.text,
                             place: controllerPlace.text,
                             info: controllerInfo.text,
+                            uid: UniqueKey().toString(),
                             partymember: [],
                           );
                           createParty(party);

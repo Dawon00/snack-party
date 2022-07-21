@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:snackparty/screen/add_party_screen.dart';
@@ -67,8 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     context,
                     CupertinoPageRoute(
                         builder: (context) => PartyScreen(
-                              party: Party.fromMap(docs[index].data()),
-                            )),
+                            party: Party.fromMap(docs[index].data()))),
                   );
                 },
               );
