@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -95,6 +96,7 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                             place: controllerPlace.text,
                             info: controllerInfo.text,
                             uid: UniqueKey().toString(),
+                            author: FirebaseAuth.instance.currentUser!.uid,
                             partymember: [],
                           );
                           createParty(party);
