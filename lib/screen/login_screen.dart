@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:snackparty/screen/home_screen.dart';
 import 'package:snackparty/screen/signup_screen.dart';
+import 'package:snackparty/widget/input_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -83,20 +84,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 12,
               ),
               // email input field
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: '메일주소',
-                ),
-                keyboardType: TextInputType.emailAddress,
-                controller: _emailController,
+              InputField(
+                textEditingController: _emailController,
+                hintText: '메일주소',
+                textInputType: TextInputType.emailAddress,
               ),
               // password input field
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: '비밀번호',
-                ),
-                controller: _passwordController,
-                obscureText: true,
+              InputField(
+                textEditingController: _passwordController,
+                hintText: '비밀번호',
+                isPass: true,
               ),
               const SizedBox(
                 height: 12,

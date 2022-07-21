@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:snackparty/model/user.dart' as model;
 import 'package:snackparty/screen/home_screen.dart';
 import 'package:snackparty/screen/login_screen.dart';
+import 'package:snackparty/widget/input_field.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -114,42 +115,31 @@ class _SignupScreenState extends State<SignupScreen> {
                 height: 12,
               ),
               // username
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your username',
-                ),
-                controller: _usernameController,
-              ),
+              InputField(
+                  textEditingController: _usernameController,
+                  hintText: 'Enter your username'),
               // email
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your email',
-                ),
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
+              InputField(
+                textEditingController: _emailController,
+                hintText: 'Enter your email',
+                textInputType: TextInputType.emailAddress,
               ),
               // password
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your password',
-                ),
-                controller: _passwordController,
-                obscureText: true,
+              InputField(
+                textEditingController: _passwordController,
+                hintText: 'Enter your password',
+                isPass: true,
               ),
               // admission year
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your year of admisison',
-                ),
-                controller: _admissionYearController,
-                keyboardType: TextInputType.number,
+              InputField(
+                textEditingController: _admissionYearController,
+                hintText: 'Enter your year of admisison',
+                textInputType: TextInputType.number,
               ),
               // major
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your year of major',
-                ),
-                controller: _majorController,
+              InputField(
+                textEditingController: _majorController,
+                hintText: 'Enter your major',
               ),
               const SizedBox(
                 height: 12,
