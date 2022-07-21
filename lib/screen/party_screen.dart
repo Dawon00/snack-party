@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:snackparty/model/party.dart';
-import 'package:snackparty/model/user.dart' as model;
+import 'package:snackparty/model/user.dart';
 import 'package:snackparty/screen/home_screen.dart';
 
 class PartyScreen extends StatefulWidget {
@@ -33,6 +33,7 @@ class _PartyScreenState extends State<PartyScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Text('파티장 : ' + widget.party.author),
                       Text('시간 : 00:00'),
                       Text('장소 : ' + widget.party.place),
                       Text('모집 현황 : 2 / 4'),
@@ -69,19 +70,14 @@ class _PartyScreenState extends State<PartyScreen> {
             //user 모델에 신청한 party 추가
             CollectionReference user = firestore.collection('users');
             user.doc(FirebaseAuth.instance.currentUser!.uid).update({
-              'parties': FieldValue.arrayUnion([widget.party.uid])
+              'parties': FieldValue.arrayUnion([widget.party.id])
             });
             //party 모델에 신청한 user 추가
             CollectionReference party = firestore.collection('party');
 
-            final DocumentSnapshot snapshot = await firestore
-                .collection('users')
-                .doc(FirebaseAuth.instance.currentUser!.uid)
-                .get();
-
-            party.doc(widget.party.uid).update({
+            party.doc(widget.party.id).update({
               'partymember': FieldValue.arrayUnion(
-                  [model.User.fromSnap(snapshot).toJson()['username']])
+                  [FirebaseAuth.instance.currentUser!.uid])
             });
 
             showDialog(
@@ -118,6 +114,7 @@ class _PartyScreenState extends State<PartyScreen> {
                     ],
                   );
                 });
+            setState(() {});
           },
         ),
       ),

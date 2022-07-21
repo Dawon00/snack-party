@@ -95,7 +95,8 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                             partytitle: controllerPartyTitle.text,
                             place: controllerPlace.text,
                             info: controllerInfo.text,
-                            uid: UniqueKey().toString(),
+                            id: UniqueKey().toString(),
+                            author: FirebaseAuth.instance.currentUser!.uid,
                             partymember: [],
                           );
                           createParty(party);
@@ -128,7 +129,6 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                                     new FlatButton(
                                       child: new Text("확인"),
                                       onPressed: () {
-                                        Navigator.pop(context);
                                         Navigator.pop(context);
                                       },
                                     ),
