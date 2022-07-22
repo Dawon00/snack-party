@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:snackparty/screen/home_screen.dart';
+import 'package:snackparty/screen/index_screen.dart';
 import 'package:snackparty/screen/signup_screen.dart';
 import 'package:snackparty/widget/input_field.dart';
 
@@ -35,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
         if (!mounted) return;
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: ((context) => const HomeScreen()),
+            builder: ((context) => IndexScreen()),
           ),
         );
       } else {

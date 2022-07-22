@@ -42,7 +42,7 @@ class _IndexScreenState extends State<IndexScreen> {
         ),
         Scaffold(
           body: Center(
-            child: Text('내 정보 화면'),
+            child: MyInfoScreen(uid: FirebaseAuth.instance.currentUser!.uid),
           ),
         )
         // MyInfoScreen(uid: '~~'),
