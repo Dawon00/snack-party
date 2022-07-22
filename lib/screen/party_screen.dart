@@ -104,7 +104,7 @@ class _PartyScreenState extends State<PartyScreen> {
                       ],
                     ),
                     actions: <Widget>[
-                      new FlatButton(
+                      new ElevatedButton(
                         child: new Text("확인"),
                         onPressed: () {
                           Navigator.pop(context);

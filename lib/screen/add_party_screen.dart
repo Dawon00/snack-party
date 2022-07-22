@@ -126,7 +126,7 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                                     ],
                                   ),
                                   actions: <Widget>[
-                                    new FlatButton(
+                                    new ElevatedButton(
                                       child: new Text("확인"),
                                       onPressed: () {
                                         Navigator.pop(context);
