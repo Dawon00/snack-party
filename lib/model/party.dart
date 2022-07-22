@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Party {
   final String partytitle;
-  //final DateTime datetime;
+  final DateTime datetime;
   final String place;
   final String info;
   final String id;
@@ -11,7 +11,7 @@ class Party {
 
   Party({
     required this.partytitle,
-    //required this.datetime,
+    required this.datetime,
     required this.place,
     required this.info,
     required this.id,
@@ -22,7 +22,7 @@ class Party {
   Party.fromMap(
     Map<String, dynamic> map,
   )   : partytitle = map['partytitle'],
-        //datetime = DateTime.parse(map['datetime']),
+        datetime = DateTime.parse(map['datetime'].toString()),
         place = map['place'],
         info = map['info'],
         id = map['id'],
@@ -34,6 +34,7 @@ class Party {
 
     return Party(
       partytitle: snapshot["partytitle"],
+      datetime: snapshot["datetime"].toDate(),
       place: snapshot["place"],
       info: snapshot["info"],
       id: snapshot['id'],
@@ -44,6 +45,7 @@ class Party {
 
   Party fromJson(Map<String, dynamic> json) => Party(
       partytitle: json['partytitle'],
+      datetime: json['datetime'],
       place: json['place'],
       info: json['age'],
       id: json['id'],
@@ -52,12 +54,11 @@ class Party {
 
   Map<String, dynamic> toJson() => {
         "partytitle": partytitle,
-        //"datetime": datetime,
+        "datetime": datetime,
         "place": place,
         "info": info,
         "id": id,
         "author": author,
-
         "partymember": partymember,
       };
 

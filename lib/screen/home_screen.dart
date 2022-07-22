@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:snackparty/model/user.dart';
 import 'package:snackparty/screen/add_party_screen.dart';
 import 'package:snackparty/screen/party_screen.dart';
@@ -59,7 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Text(
                                 docs[index]['partytitle'] + ' (신청 인원 / 가능 인원)'),
-                            Text('00 : 00 ' + docs[index]['place']),
+                            Text(
+                                "${DateFormat('yyyy-MM-dd hh:mm a').format(docs[index]['datetime'].toDate())} ${docs[index]['place']}"),
                           ],
                         ))
                   ],
@@ -68,8 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.push(
                     context,
                     CupertinoPageRoute(
-                        builder: (context) => PartyScreen(
-                            party: Party.fromMap(docs[index].data()))),
+                        builder: (context) =>
+                            PartyScreen(party: Party.fromSnap(docs[index]))),
                   );
                 },
               );
