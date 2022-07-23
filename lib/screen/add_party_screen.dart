@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:snackparty/model/party.dart';
+import 'package:snackparty/screen/home_screen.dart';
 
 class AddPartyScreen extends StatefulWidget {
   const AddPartyScreen({Key? key}) : super(key: key);
@@ -136,16 +137,24 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                   child: ElevatedButton(
                       child: const Text('생성하기'),
                       onPressed: () {
-                        final party = Party(
-                          partytitle: controllerPartyTitle.text,
-                          datetime: dateTime,
-                          place: controllerPlace.text,
-                          info: controllerInfo.text,
-                          id: UniqueKey().toString(),
-                          author: FirebaseAuth.instance.currentUser!.uid,
-                          partymember: [],
-                        );
-                        createParty(party);
+                        final docParty = firestore.collection('party').doc();
+
+                        final partytitle = controllerPartyTitle.text;
+                        final datetime = dateTime;
+                        final place = controllerPlace.text;
+                        final info = controllerInfo.text;
+                        id:
+                        docParty.id;
+                        final author = FirebaseAuth.instance.currentUser!.uid;
+                        final partymember = [];
+
+                        createParty(
+                            partytitle: partytitle,
+                            datetime: datetime,
+                            place: place,
+                            info: info,
+                            author: author,
+                            partymember: partymember);
                         showDialog(
                             barrierDismissible: false,
                             context: context,
@@ -190,8 +199,23 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
   }
 }
 
-Future createParty(Party party) async {
+Future createParty({
+  required String partytitle,
+  required DateTime datetime,
+  required String place,
+  required String info,
+  required String author,
+  required List partymember,
+}) async {
   final docParty = FirebaseFirestore.instance.collection('party').doc();
-  final json = party.toJson();
+  final json = {
+    'id': docParty.id,
+    'partytitle': partytitle,
+    'datetime': datetime,
+    'place': place,
+    'info': info,
+    'author': author,
+    'partymember': partymember,
+  };
   await docParty.set(json);
 }

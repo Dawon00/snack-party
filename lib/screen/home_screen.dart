@@ -70,8 +70,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.push(
                     context,
                     CupertinoPageRoute(
-                        builder: (context) =>
-                            PartyScreen(party: Party.fromSnap(docs[index]))),
+                        builder: (context) => PartyScreen(
+                              party: Party.fromSnap(docs[index]),
+                              uid: FirebaseAuth.instance.currentUser!.uid,
+                            )),
                   );
                 },
               );

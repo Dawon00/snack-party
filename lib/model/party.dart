@@ -14,7 +14,7 @@ class Party {
     required this.datetime,
     required this.place,
     required this.info,
-    required this.id,
+    this.id = '',
     required this.author,
     required this.partymember,
   });
