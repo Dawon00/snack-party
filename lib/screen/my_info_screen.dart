@@ -93,8 +93,15 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('내 정보'),
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        title: const Text(
+          '내 정보',
+          style: TextStyle(
+              color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
+        ),
         actions: [
           // 저장 버튼
           TextButton(
@@ -108,7 +115,7 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
                 ? const CircularProgressIndicator()
                 : const Text(
                     "저장",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                   ),
           ),
         ],

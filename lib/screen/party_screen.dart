@@ -43,6 +43,7 @@ class _PartyScreenState extends State<PartyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(widget.party.partytitle),
       ),
@@ -92,7 +93,9 @@ class _PartyScreenState extends State<PartyScreen> {
         padding: EdgeInsets.all(20),
         child: isMember
             ? BarButton(
-                child: Text('신청 취소하기'),
+                child: Text('신청 취소하기',
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
                 onPressed: () async {
                   //user 모델에 신청한 party 삭제
                   CollectionReference user = firestore.collection('users');
@@ -143,7 +146,9 @@ class _PartyScreenState extends State<PartyScreen> {
                 },
               )
             : BarButton(
-                child: Text('신청 하기'),
+                child: Text('신청 하기',
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
                 onPressed: () async {
                   //user 모델에 신청한 party 추가
                   CollectionReference user = firestore.collection('users');

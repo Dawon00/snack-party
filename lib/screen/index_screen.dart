@@ -68,6 +68,13 @@ class _IndexScreenState extends State<IndexScreen> {
     return Scaffold(
       body: buildPageView(),
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.blueAccent[700],
+        unselectedItemColor: Color.fromARGB(255, 131, 144, 167),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        iconSize: 30,
         currentIndex: bottomSelectedIndex,
         onTap: (index) {
           bottomTapped(index);

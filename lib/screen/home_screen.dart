@@ -30,12 +30,19 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('파티 찾기'),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.search)),
-          IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.bell_fill))
-        ],
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        title: Text(
+          '파티 찾기',
+          style: TextStyle(
+              color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
+        ),
+        // actions: [
+        //   IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.search)),
+        //   IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.bell_fill))
+        // ],
       ),
       body: StreamBuilder(
         stream: firestore.collection('party').snapshots(),

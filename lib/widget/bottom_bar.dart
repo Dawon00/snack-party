@@ -9,7 +9,7 @@ class Bottom extends StatelessWidget {
       decoration: BoxDecoration(border: Border.all()),
       height: 60,
       child: TabBar(
-        labelColor: Colors.black,
+        labelColor: Colors.blueAccent[700],
         tabs: [
           Tab(
             child: Text('파티 찾기'),

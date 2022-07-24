@@ -53,8 +53,15 @@ class _MyPartyScreenState extends State<MyPartyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('내 파티'),
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        title: const Text(
+          '내 파티',
+          style: TextStyle(
+              color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
+        ),
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.search)),
           IconButton(

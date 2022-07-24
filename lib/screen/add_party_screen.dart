@@ -76,7 +76,17 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
     // CollectionReference party = FirebaseFirestore.instance.collection('party');
     return Scaffold(
       appBar: AppBar(
-        title: const Text('파티 생성'),
+        iconTheme: IconThemeData(
+          color: Colors.black,
+          size: 30,
+        ),
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        title: const Text(
+          '파티 만들기',
+          style: TextStyle(
+              color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -135,7 +145,9 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                   width: double.infinity,
                   padding: EdgeInsets.all(20),
                   child: BarButton(
-                      child: const Text('생성하기'),
+                      child: const Text('완료',
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)),
                       onPressed: () {
                         final docParty = firestore.collection('party').doc();
 
