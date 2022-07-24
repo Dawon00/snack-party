@@ -117,28 +117,38 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               // username
               InputField(
+                  minLines: 1,
+                  maxLines: 1,
                   textEditingController: _usernameController,
                   hintText: 'Enter your username'),
               // email
               InputField(
+                minLines: 1,
+                maxLines: 1,
                 textEditingController: _emailController,
                 hintText: 'Enter your email',
                 textInputType: TextInputType.emailAddress,
               ),
               // password
               InputField(
+                minLines: 1,
+                maxLines: 1,
                 textEditingController: _passwordController,
                 hintText: 'Enter your password',
                 isPass: true,
               ),
               // admission year
               InputField(
+                minLines: 1,
+                maxLines: 1,
                 textEditingController: _admissionYearController,
                 hintText: 'Enter your year of admisison',
                 textInputType: TextInputType.number,
               ),
               // major
               InputField(
+                minLines: 1,
+                maxLines: 1,
                 textEditingController: _majorController,
                 hintText: 'Enter your major',
               ),

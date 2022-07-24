@@ -87,12 +87,16 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               // email input field
               InputField(
+                minLines: 1,
+                maxLines: 1,
                 textEditingController: _emailController,
                 hintText: '메일주소',
                 textInputType: TextInputType.emailAddress,
               ),
               // password input field
               InputField(
+                minLines: 1,
+                maxLines: 1,
                 textEditingController: _passwordController,
                 hintText: '비밀번호',
                 isPass: true,

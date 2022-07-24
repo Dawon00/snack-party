@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:snackparty/widget/input_field.dart';
 
 class MyInfoScreen extends StatefulWidget {
   final String uid;
@@ -123,27 +124,27 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
                 height: 32,
               ),
               // username
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: 'username',
-                ),
-                keyboardType: TextInputType.emailAddress,
-                controller: usernameController,
+              InputField(
+                minLines: 1,
+                maxLines: 1,
+                hintText: 'username',
+                textInputType: TextInputType.emailAddress,
+                textEditingController: usernameController,
               ),
               // admission year
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your year of admisison',
-                ),
-                controller: admissionYearController,
-                keyboardType: TextInputType.number,
+              InputField(
+                minLines: 1,
+                maxLines: 1,
+                hintText: 'Enter your year of admisison',
+                textEditingController: admissionYearController,
+                textInputType: TextInputType.number,
               ),
               // major
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your major',
-                ),
-                controller: majorController,
+              InputField(
+                minLines: 1,
+                maxLines: 1,
+                hintText: 'Enter your major',
+                textEditingController: majorController,
               ),
             ],
           ),

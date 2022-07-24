@@ -5,9 +5,14 @@ class InputField extends StatelessWidget {
   final bool isPass;
   final String hintText;
   final TextInputType textInputType;
+  final int minLines;
+  final int maxLines;
+
   const InputField({
     Key? key,
     required this.textEditingController,
+    required this.minLines,
+    required this.maxLines,
     this.isPass = false,
     required this.hintText,
     this.textInputType = TextInputType.text,
@@ -21,6 +26,8 @@ class InputField extends StatelessWidget {
       ),
       keyboardType: textInputType,
       controller: textEditingController,
+      maxLines: maxLines,
+      minLines: minLines,
       obscureText: isPass,
     );
   }

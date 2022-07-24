@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:snackparty/model/party.dart';
 import 'package:snackparty/screen/home_screen.dart';
 import 'package:snackparty/widget/bar_button.dart';
+import 'package:snackparty/widget/input_field.dart';
 
 class AddPartyScreen extends StatefulWidget {
   const AddPartyScreen({Key? key}) : super(key: key);
@@ -80,28 +81,27 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+          Padding(padding: EdgeInsets.all(20)),
           Expanded(
               child: SingleChildScrollView(
             child: Column(
               children: [
                 Container(
                   padding: const EdgeInsets.all(5),
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: '파티명',
-                      hintText: '파티명을 입력하세요',
-                    ),
-                    controller: controllerPartyTitle,
+                  child: InputField(
+                    minLines: 1,
+                    maxLines: 1,
+                    hintText: '파티명',
+                    textEditingController: controllerPartyTitle,
                   ),
                 ),
                 Container(
                   padding: const EdgeInsets.all(5),
-                  child: TextFormField(
-                    controller: controllerPlace,
-                    decoration: const InputDecoration(
-                      labelText: '장소',
-                      hintText: '장소를 입력하세요',
-                    ),
+                  child: InputField(
+                    minLines: 1,
+                    maxLines: 1,
+                    hintText: '장소',
+                    textEditingController: controllerPlace,
                   ),
                 ),
                 Container(
@@ -121,16 +121,14 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                 ),
                 Container(
                   padding: const EdgeInsets.all(5),
-                  child: TextFormField(
-                    controller: controllerInfo,
+                  child: InputField(
+                    maxLines: 10,
+
+                    textEditingController: controllerInfo,
                     minLines: 6,
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
+                    textInputType: TextInputType.multiline,
                     //expands: true,
-                    decoration: const InputDecoration(
-                      labelText: '추가 설명',
-                      hintText: '추가설명을 입력하세요',
-                    ),
+                    hintText: '추가설명',
                   ),
                 ),
                 Container(
