@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:snackparty/screen/home_screen.dart';
 import 'package:snackparty/screen/index_screen.dart';
 import 'package:snackparty/screen/signup_screen.dart';
+import 'package:snackparty/widget/bar_button.dart';
 import 'package:snackparty/widget/input_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -100,8 +101,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 12,
               ),
               // login button
-              InkWell(
-                onTap: loginUser,
+              BarButton(
+                onPressed: loginUser,
                 child: Container(
                   width: double.infinity,
                   alignment: Alignment.center,

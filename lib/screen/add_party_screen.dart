@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:snackparty/model/party.dart';
 import 'package:snackparty/screen/home_screen.dart';
+import 'package:snackparty/widget/bar_button.dart';
 
 class AddPartyScreen extends StatefulWidget {
   const AddPartyScreen({Key? key}) : super(key: key);
@@ -134,7 +135,7 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
+                  child: BarButton(
                       child: const Text('생성하기'),
                       onPressed: () {
                         final docParty = firestore.collection('party').doc();
