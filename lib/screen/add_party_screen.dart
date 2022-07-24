@@ -144,8 +144,7 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                         final datetime = dateTime;
                         final place = controllerPlace.text;
                         final info = controllerInfo.text;
-                        id:
-                        docParty.id;
+                        //id: docParty.id;
                         final author = FirebaseAuth.instance.currentUser!.uid;
                         final partymember = [];
 
@@ -183,6 +182,7 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                                   ElevatedButton(
                                     child: const Text("확인"),
                                     onPressed: () {
+                                      Navigator.pop(context);
                                       Navigator.pop(context);
                                     },
                                   ),
