@@ -133,8 +133,9 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                Container(
                   width: double.infinity,
+                  padding: EdgeInsets.all(20),
                   child: BarButton(
                       child: const Text('생성하기'),
                       onPressed: () {

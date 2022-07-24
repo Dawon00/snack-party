@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:snackparty/model/party.dart';
 import 'package:snackparty/model/user.dart';
 import 'package:snackparty/screen/home_screen.dart';
+import 'package:snackparty/widget/bar_button.dart';
 
 class PartyScreen extends StatefulWidget {
   final Party party;
@@ -90,7 +91,7 @@ class _PartyScreenState extends State<PartyScreen> {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(20),
         child: isMember
-            ? ElevatedButton(
+            ? BarButton(
                 child: Text('신청 취소하기'),
                 onPressed: () async {
                   //user 모델에 신청한 party 삭제
@@ -141,7 +142,7 @@ class _PartyScreenState extends State<PartyScreen> {
                   //setState(() {});
                 },
               )
-            : ElevatedButton(
+            : BarButton(
                 child: Text('신청 하기'),
                 onPressed: () async {
                   //user 모델에 신청한 party 추가

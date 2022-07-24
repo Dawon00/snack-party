@@ -12,6 +12,14 @@ class BarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: onPressed, child: child);
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: child,
+      style: ElevatedButton.styleFrom(
+          primary: Colors.indigoAccent[700],
+          fixedSize: const Size(300, 50),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+    );
   }
 }
