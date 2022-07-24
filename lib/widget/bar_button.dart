@@ -1,25 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/single_child_widget.dart';
 
-class BarButton extends StatefulWidget {
-  final Function onPressed;
+class BarButton extends StatelessWidget {
   final Widget child;
-  const BarButton({Key? key, required this.onPressed, required this.child})
-      : super(key: key);
-
-  @override
-  State<BarButton> createState() => _BarButtonState();
-}
-
-class _BarButtonState extends State<BarButton> {
-  //final String text;
+  final void Function()? onPressed;
+  const BarButton({
+    Key? key,
+    required this.child,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      child: widget.child,
-      onPressed: () {
-        widget.onPressed;
-      },
-    );
+    return ElevatedButton(onPressed: onPressed, child: child);
   }
 }
