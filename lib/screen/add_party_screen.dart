@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:snackparty/model/party.dart';
-import 'package:snackparty/screen/home_screen.dart';
 import 'package:snackparty/widget/bar_button.dart';
 import 'package:snackparty/widget/input_field.dart';
 
@@ -76,7 +74,7 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
     // CollectionReference party = FirebaseFirestore.instance.collection('party');
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
           size: 30,
         ),
@@ -88,124 +86,129 @@ class _AddPartyScreenState extends State<AddPartyScreen> {
               color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Padding(padding: EdgeInsets.all(20)),
-          Expanded(
-              child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(5),
-                  child: InputField(
-                    minLines: 1,
-                    maxLines: 1,
-                    hintText: '파티명',
-                    textEditingController: controllerPartyTitle,
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+                child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                    child: InputField(
+                      minLines: 1,
+                      maxLines: 1,
+                      hintText: '파티명',
+                      textEditingController: controllerPartyTitle,
+                    ),
                   ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(5),
-                  child: InputField(
-                    minLines: 1,
-                    maxLines: 1,
-                    hintText: '장소',
-                    textEditingController: controllerPlace,
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                    child: InputField(
+                      minLines: 1,
+                      maxLines: 1,
+                      hintText: '장소',
+                      textEditingController: controllerPlace,
+                    ),
                   ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _selectDateTime(context);
-                      showDateTime = true;
-                    },
-                    child: showDateTime
-                        ? Text(
-                            DateFormat('yyyy-MM-dd hh:mm a').format(dateTime),
-                          )
-                        : const Text('약속일자 선택하기'),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(5),
-                  child: InputField(
-                    maxLines: 10,
-
-                    textEditingController: controllerInfo,
-                    minLines: 6,
-                    textInputType: TextInputType.multiline,
-                    //expands: true,
-                    hintText: '추가설명',
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(20),
-                  child: BarButton(
-                      child: const Text('완료',
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold)),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    width: double.infinity,
+                    child: ElevatedButton(
                       onPressed: () {
-                        final docParty = firestore.collection('party').doc();
+                        _selectDateTime(context);
+                        showDateTime = true;
+                      },
+                      child: showDateTime
+                          ? Text(
+                              DateFormat('yyyy-MM-dd hh:mm a').format(dateTime),
+                            )
+                          : const Text('약속일자 선택하기'),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                    child: InputField(
+                      maxLines: 10,
 
-                        final partytitle = controllerPartyTitle.text;
-                        final datetime = dateTime;
-                        final place = controllerPlace.text;
-                        final info = controllerInfo.text;
-                        //id: docParty.id;
-                        final author = FirebaseAuth.instance.currentUser!.uid;
-                        final partymember = [author];
+                      textEditingController: controllerInfo,
+                      minLines: 6,
+                      textInputType: TextInputType.multiline,
+                      //expands: true,
+                      hintText: '추가설명',
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(20),
+                    child: BarButton(
+                        child: const Text('완료',
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold)),
+                        onPressed: () {
+                          // final docParty = firestore.collection('party').doc();
 
-                        createParty(
-                            partytitle: partytitle,
-                            datetime: datetime,
-                            place: place,
-                            info: info,
-                            author: author,
-                            partymember: partymember);
-                        showDialog(
-                            barrierDismissible: false,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0)),
-                                //Dialog Main Title
-                                title: Column(
-                                  children: const <Widget>[
-                                    Text("파티 생성"),
-                                  ],
-                                ),
-                                //
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const <Widget>[
-                                    Text(
-                                      "완료되었습니다.",
+                          final partytitle = controllerPartyTitle.text;
+                          final datetime = dateTime;
+                          final place = controllerPlace.text;
+                          final info = controllerInfo.text;
+                          //id: docParty.id;
+                          final author = FirebaseAuth.instance.currentUser!.uid;
+                          final partymember = [author];
+
+                          createParty(
+                              partytitle: partytitle,
+                              datetime: datetime,
+                              place: place,
+                              info: info,
+                              author: author,
+                              partymember: partymember);
+                          showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10.0)),
+                                  //Dialog Main Title
+                                  title: Column(
+                                    children: const <Widget>[
+                                      Text("파티 생성"),
+                                    ],
+                                  ),
+                                  //
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const <Widget>[
+                                      Text(
+                                        "완료되었습니다.",
+                                      ),
+                                    ],
+                                  ),
+                                  actions: <Widget>[
+                                    ElevatedButton(
+                                      child: const Text("확인"),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
                                     ),
                                   ],
-                                ),
-                                actions: <Widget>[
-                                  ElevatedButton(
-                                    child: const Text("확인"),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                ],
-                              );
-                            });
-                      }),
-                ),
-              ],
-            ),
-          ))
-        ],
+                                );
+                              });
+                        }),
+                  ),
+                ],
+              ),
+            ))
+          ],
+        ),
       ),
     );
   }
