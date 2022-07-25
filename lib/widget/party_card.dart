@@ -10,6 +10,11 @@ class PartyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(10),
+      color: Colors.blue.shade50,
+      shape: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(25),
+        borderSide: BorderSide(color: Colors.blue.shade50),
+      ),
       child: ListTile(
         contentPadding: const EdgeInsets.all(10),
         title: Text(party.partytitle),
