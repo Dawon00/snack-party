@@ -22,6 +22,7 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
+        labelText: hintText,
         hintText: hintText,
       ),
       keyboardType: textInputType,
