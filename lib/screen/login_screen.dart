@@ -108,16 +108,6 @@ class _LoginScreenState extends State<LoginScreen> {
               // login button
               BarButton(
                 onPressed: loginUser,
-                //child: Container(
-                // width: double.infinity,
-                // alignment: Alignment.center,
-                // padding: const EdgeInsets.symmetric(vertical: 12),
-                // decoration: const ShapeDecoration(
-                //   shape: RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.all(Radius.circular(4)),
-                //   ),
-                //   color: Colors.blueAccent,
-                // ),
                 child: !_isLoading
                     ? const Text(
                         'Log in',
@@ -129,7 +119,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     : const CircularProgressIndicator(
                         color: Colors.white,
                       ),
-                // ),
               ),
               Flexible(
                 flex: 2,
