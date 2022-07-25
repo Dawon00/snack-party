@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:snackparty/model/party.dart';
-import 'package:snackparty/model/user.dart';
+import 'package:snackparty/model/user.dart' as model;
 import 'package:snackparty/screen/home_screen.dart';
 import 'package:snackparty/widget/bar_button.dart';
 
@@ -18,10 +17,10 @@ class PartyScreen extends StatefulWidget {
 
 class _PartyScreenState extends State<PartyScreen> {
   bool isMember = true;
+  var members;
 
   Future getData() async {
     try {
-      final FirebaseFirestore firestore = FirebaseFirestore.instance;
       if (!widget.party.partymember.contains((widget.uid))) {
         setState(() {
           isMember = false;
@@ -33,11 +32,31 @@ class _PartyScreenState extends State<PartyScreen> {
     }
   }
 
+  Future<List> getMembers() async {
+    List partyMembers = [];
+    try {
+      final FirebaseFirestore firestore = FirebaseFirestore.instance;
+      for (String id in widget.party.partymember) {
+        final DocumentSnapshot snapshot =
+            await firestore.collection('users').doc(id).get();
+        partyMembers.add(model.User.fromSnap(snapshot));
+      }
+    } catch (err) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(err.toString()),
+        ),
+      );
+    }
+
+    return partyMembers;
+  }
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getData();
+    members = getMembers();
   }
 
   @override
@@ -67,16 +86,25 @@ class _PartyScreenState extends State<PartyScreen> {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('파티장 : ' + widget.party.author),
-                      Text('시간 : ' + widget.party.datetime.toString()),
-                      Text('장소 : ' + widget.party.place),
-                      Text('모집 현황 : 2 / 4'),
-                      Text('\n' + widget.party.info),
-                    ],
-                  ),
+                  child: FutureBuilder(
+                      future: firestore
+                          .collection('users')
+                          .doc(widget.party.author)
+                          .get(),
+                      builder: (context, AsyncSnapshot snapshot) => snapshot
+                              .hasData
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('파티장 : ' + snapshot.data['username']),
+                                Text(
+                                    '시간 : ' + widget.party.datetime.toString()),
+                                Text('장소 : ' + widget.party.place),
+                                Text('모집 현황 : 2 / 4'),
+                                Text('\n' + widget.party.info),
+                              ],
+                            )
+                          : Container()),
                 ),
               ],
             ),
