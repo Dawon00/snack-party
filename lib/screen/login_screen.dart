@@ -5,6 +5,7 @@ import 'package:snackparty/screen/index_screen.dart';
 import 'package:snackparty/screen/signup_screen.dart';
 import 'package:snackparty/widget/bar_button.dart';
 import 'package:snackparty/widget/input_field.dart';
+import 'package:flutter/src/material/colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -107,28 +108,28 @@ class _LoginScreenState extends State<LoginScreen> {
               // login button
               BarButton(
                 onPressed: loginUser,
-                child: Container(
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  decoration: const ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                    ),
-                    color: Colors.blue,
-                  ),
-                  child: !_isLoading
-                      ? const Text(
-                          'Log in',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        )
-                      : const CircularProgressIndicator(
-                          color: Colors.white,
-                        ),
-                ),
+                //child: Container(
+                // width: double.infinity,
+                // alignment: Alignment.center,
+                // padding: const EdgeInsets.symmetric(vertical: 12),
+                // decoration: const ShapeDecoration(
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.all(Radius.circular(4)),
+                //   ),
+                //   color: Colors.blueAccent,
+                // ),
+                child: !_isLoading
+                    ? const Text(
+                        'Log in',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      )
+                    : const CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
+                // ),
               ),
               Flexible(
                 flex: 2,

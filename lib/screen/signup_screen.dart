@@ -158,28 +158,28 @@ class _SignupScreenState extends State<SignupScreen> {
               // signup button
               BarButton(
                 onPressed: signupUser,
-                child: Container(
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  decoration: const ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                    ),
-                    color: Colors.blue,
-                  ),
-                  child: !_isLoading
-                      ? const Text(
-                          'Sign up',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        )
-                      : const CircularProgressIndicator(
-                          color: Colors.white,
-                        ),
-                ),
+                // child: Container(
+                //   width: double.infinity,
+                //   alignment: Alignment.center,
+                //   padding: const EdgeInsets.symmetric(vertical: 12),
+                //   decoration: const ShapeDecoration(
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.all(Radius.circular(4)),
+                //     ),
+                //     color: Colors.blue,
+                //   ),
+                child: !_isLoading
+                    ? const Text(
+                        'Sign up',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      )
+                    : const CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
+                //),
               ),
               Flexible(
                 flex: 2,
