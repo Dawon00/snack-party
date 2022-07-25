@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:snackparty/model/party.dart';
 import 'package:snackparty/screen/party_screen.dart';
 import 'package:snackparty/widget/add_party_button.dart';
+import 'package:snackparty/widget/party_card.dart';
 
 class MyPartyScreen extends StatefulWidget {
   final String uid;
@@ -88,15 +89,8 @@ class _MyPartyScreenState extends State<MyPartyScreen> {
                           ),
                         );
                       },
-                      child: Card(
-                        margin: const EdgeInsets.all(10),
-                        child: ListTile(
-                          contentPadding: const EdgeInsets.all(10),
-                          title: Text(
-                              snapshot.data![index].toJson()['partytitle']),
-                          subtitle: Text(
-                              "${snapshot.data![index].toJson()['place']} / time"),
-                        ),
+                      child: PartyCard(
+                        party: snapshot.data![index],
                       ),
                     ),
                   )
