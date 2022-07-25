@@ -45,7 +45,17 @@ class _PartyScreenState extends State<PartyScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(widget.party.partytitle),
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+          size: 30,
+        ),
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        title: Text(
+          widget.party.partytitle,
+          style: TextStyle(
+              color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
+        ),
       ),
       body: CustomScrollView(
         scrollDirection: Axis.vertical,
@@ -75,13 +85,20 @@ class _PartyScreenState extends State<PartyScreen> {
             automaticallyImplyLeading: false,
             title: Text(
               '파티원 목록',
-              style: TextStyle(color: Colors.black),
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
             backgroundColor: Colors.white,
           ),
           SliverList(
               delegate: SliverChildBuilderDelegate(
                   (c, i) => ListTile(
+                        tileColor: Colors.blue.shade50,
+                        contentPadding: const EdgeInsets.all(10),
+                        // shape: OutlineInputBorder(
+                        //   borderRadius: BorderRadius.circular(25),
+                        //   borderSide: BorderSide(color: Colors.blue.shade50),
+                        // ),
                         leading: Icon(Icons.account_circle),
                         title: Text(widget.party.partymember[i]),
                         subtitle: Text('전공 / 학번'),
