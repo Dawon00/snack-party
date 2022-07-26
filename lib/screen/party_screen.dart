@@ -72,7 +72,7 @@ class _PartyScreenState extends State<PartyScreen> {
         backgroundColor: Colors.white,
         title: Text(
           widget.party.partytitle,
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
         ),
       ),
@@ -85,31 +85,31 @@ class _PartyScreenState extends State<PartyScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                   child: FutureBuilder(
                       future: firestore
                           .collection('users')
                           .doc(widget.party.author)
                           .get(),
-                      builder: (context, AsyncSnapshot snapshot) => snapshot
-                              .hasData
-                          ? Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('파티장 : ' + snapshot.data['username']),
-                                Text(
-                                    '시간 : ' + widget.party.datetime.toString()),
-                                Text('장소 : ' + widget.party.place),
-                                Text('모집 현황 : 2 / 4'),
-                                Text('\n' + widget.party.info),
-                              ],
-                            )
-                          : Container()),
+                      builder: (context, AsyncSnapshot snapshot) =>
+                          snapshot.hasData
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("파티장 : ${snapshot.data['username']}"),
+                                    Text(
+                                        "시간 : ${widget.party.datetime.toString()}"),
+                                    Text("장소 : ${widget.party.place}"),
+                                    const Text('모집 현황 : 2 / 4'),
+                                    Text("\n${widget.party.info}"),
+                                  ],
+                                )
+                              : Container()),
                 ),
               ],
             ),
           ),
-          SliverAppBar(
+          const SliverAppBar(
             automaticallyImplyLeading: false,
             title: Text(
               '파티원 목록',
@@ -118,27 +118,35 @@ class _PartyScreenState extends State<PartyScreen> {
             ),
             backgroundColor: Colors.white,
           ),
-          SliverList(
-              delegate: SliverChildBuilderDelegate(
-                  (c, i) => ListTile(
-                        tileColor: Colors.blue.shade50,
-                        contentPadding: const EdgeInsets.all(10),
-                        // shape: OutlineInputBorder(
-                        //   borderRadius: BorderRadius.circular(25),
-                        //   borderSide: BorderSide(color: Colors.blue.shade50),
-                        // ),
-                        leading: Icon(Icons.account_circle),
-                        title: Text(widget.party.partymember[i]),
-                        subtitle: Text('전공 / 학번'),
+          FutureBuilder(
+            future: members,
+            builder: (BuildContext context, AsyncSnapshot<List> snapshot) =>
+                snapshot.hasData
+                    ? SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                            (c, i) => ListTile(
+                                  tileColor: Colors.blue.shade50,
+                                  contentPadding: const EdgeInsets.all(10),
+                                  leading: const Icon(Icons.account_circle),
+                                  title: Text(
+                                      snapshot.data![i].toJson()['username']),
+                                  subtitle: const Text('전공 / 학번'),
+                                ),
+                            childCount: widget.party.partymember.length),
+                      )
+                    : SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                            (c, i) => const LinearProgressIndicator(),
+                            childCount: 1),
                       ),
-                  childCount: widget.party.partymember.length)),
+          ),
         ],
       ),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: isMember
             ? BarButton(
-                child: Text('신청 취소하기',
+                child: const Text('신청 취소하기',
                     style:
                         TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
                 onPressed: () async {
@@ -154,44 +162,44 @@ class _PartyScreenState extends State<PartyScreen> {
                   });
 
                   showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                          //Dialog Main Title
-                          title: Column(
-                            children: <Widget>[
-                              new Text("파티 신청"),
-                            ],
-                          ),
-                          //
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "취소되었습니다.",
-                              ),
-                            ],
-                          ),
-                          actions: <Widget>[
-                            new ElevatedButton(
-                              child: new Text("확인"),
-                              onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.pop(context);
-                              },
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        //Dialog Main Title
+                        title: Column(
+                          children: const <Widget>[
+                            Text("파티 신청"),
+                          ],
+                        ),
+                        //
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const <Widget>[
+                            Text(
+                              "취소되었습니다.",
                             ),
                           ],
-                        );
-                      });
-                  //setState(() {});
+                        ),
+                        actions: <Widget>[
+                          ElevatedButton(
+                            child: const Text("확인"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
               )
             : BarButton(
-                child: Text('신청 하기',
+                child: const Text('신청 하기',
                     style:
                         TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
                 onPressed: () async {
@@ -208,40 +216,40 @@ class _PartyScreenState extends State<PartyScreen> {
                   });
 
                   showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                          //Dialog Main Title
-                          title: Column(
-                            children: <Widget>[
-                              new Text("파티 신청"),
-                            ],
-                          ),
-                          //
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "완료되었습니다.",
-                              ),
-                            ],
-                          ),
-                          actions: <Widget>[
-                            new ElevatedButton(
-                              child: new Text("확인"),
-                              onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.pop(context);
-                              },
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        //Dialog Main Title
+                        title: Column(
+                          children: const <Widget>[
+                            Text("파티 신청"),
+                          ],
+                        ),
+                        //
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const <Widget>[
+                            Text(
+                              "완료되었습니다.",
                             ),
                           ],
-                        );
-                      });
-                  //setState(() {});
+                        ),
+                        actions: <Widget>[
+                          ElevatedButton(
+                            child: const Text("확인"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
               ),
       ),
