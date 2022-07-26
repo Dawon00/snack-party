@@ -129,7 +129,12 @@ class _PartyScreenState extends State<PartyScreen> {
                                   leading: const Icon(Icons.account_circle),
                                   title: Text(
                                       snapshot.data![i].toJson()['username']),
-                                  subtitle: const Text('전공 / 학번'),
+                                  subtitle: Text(
+                                      snapshot.data![i].toJson()['major'] +
+                                          ' / ' +
+                                          snapshot.data![i]
+                                              .toJson()['admissionYear']
+                                              .toString()),
                                 ),
                             childCount: widget.party.partymember.length),
                       )
