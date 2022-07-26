@@ -100,7 +100,6 @@ class _PartyScreenState extends State<PartyScreen> {
                                     Text(
                                         "시간 : ${widget.party.datetime.toString()}"),
                                     Text("장소 : ${widget.party.place}"),
-                                    const Text('모집 현황 : 2 / 4'),
                                     Text("\n${widget.party.info}"),
                                   ],
                                 )
