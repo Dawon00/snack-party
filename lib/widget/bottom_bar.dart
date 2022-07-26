@@ -10,7 +10,7 @@ class Bottom extends StatelessWidget {
       height: 60,
       child: TabBar(
         labelColor: Colors.blueAccent[700],
-        tabs: [
+        tabs: const [
           Tab(
             child: Text('파티 찾기'),
           ),

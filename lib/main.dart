@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
           if (snapshot.connectionState == ConnectionState.active) {
             // 데이터가 정상인 경우 HomeScreen 반환
             if (snapshot.hasData) {
-              return IndexScreen();
+              return const IndexScreen();
             } else if (snapshot.hasError) {
               // 데이터에 에러가 있는 경우 error Text 페이지 반환
               return Center(

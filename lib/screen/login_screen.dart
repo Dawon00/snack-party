@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:snackparty/screen/home_screen.dart';
 import 'package:snackparty/screen/index_screen.dart';
 import 'package:snackparty/screen/signup_screen.dart';
 import 'package:snackparty/widget/bar_button.dart';
 import 'package:snackparty/widget/input_field.dart';
-import 'package:flutter/src/material/colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -38,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
         if (!mounted) return;
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: ((context) => IndexScreen()),
+            builder: ((context) => const IndexScreen()),
           ),
         );
       } else {
@@ -79,9 +77,28 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Container(),
               ),
               // logo
-              Image.network(
-                'https://upload.wikimedia.org/wikipedia/en/thumb/3/37/MapleStory.SVG/1200px-MapleStory.SVG.png',
-                height: 64,
+              Stack(
+                children: <Widget>[
+                  // Stroked text as border.
+                  Text(
+                    'SNACK PARTY',
+                    style: TextStyle(
+                      fontSize: 40,
+                      foreground: Paint()
+                        ..style = PaintingStyle.stroke
+                        ..strokeWidth = 6
+                        ..color = Colors.indigo.shade700,
+                    ),
+                  ),
+                  // Solid text as fill.
+                  Text(
+                    'SNACK PARTY',
+                    style: TextStyle(
+                      fontSize: 40,
+                      color: Colors.amber.shade300,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 12,

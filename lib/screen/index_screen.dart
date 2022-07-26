@@ -5,7 +5,7 @@ import 'package:snackparty/screen/my_info_screen.dart';
 import 'package:snackparty/screen/my_party_screen.dart';
 
 class IndexScreen extends StatefulWidget {
-  IndexScreen({Key? key}) : super(key: key);
+  const IndexScreen({Key? key}) : super(key: key);
 
   @override
   State<IndexScreen> createState() => _IndexScreenState();
@@ -16,10 +16,10 @@ class _IndexScreenState extends State<IndexScreen> {
 
   List<BottomNavigationBarItem> buildBottomNavBarItems() {
     return [
-      BottomNavigationBarItem(
-          icon: new Icon(Icons.search_outlined), label: '파티 찾기'),
-      BottomNavigationBarItem(icon: new Icon(Icons.people), label: '내 파티'),
-      BottomNavigationBarItem(icon: Icon(Icons.person), label: '내 정보')
+      const BottomNavigationBarItem(
+          icon: Icon(Icons.search_outlined), label: '파티 찾기'),
+      const BottomNavigationBarItem(icon: Icon(Icons.people), label: '내 파티'),
+      const BottomNavigationBarItem(icon: Icon(Icons.person), label: '내 정보')
     ];
   }
 
@@ -30,13 +30,13 @@ class _IndexScreenState extends State<IndexScreen> {
 
   Widget buildPageView() {
     return PageView(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       controller: pageController,
       onPageChanged: (index) {
         pageChanged(index);
       },
       children: <Widget>[
-        HomeScreen(),
+        const HomeScreen(),
         MyPartyScreen(
           uid: FirebaseAuth.instance.currentUser!.uid,
         ),
@@ -71,7 +71,7 @@ class _IndexScreenState extends State<IndexScreen> {
         elevation: 0.0,
         backgroundColor: Colors.white,
         selectedItemColor: Colors.blueAccent[700],
-        unselectedItemColor: Color.fromARGB(255, 131, 144, 167),
+        unselectedItemColor: const Color.fromARGB(255, 131, 144, 167),
         showSelectedLabels: false,
         showUnselectedLabels: false,
         iconSize: 30,

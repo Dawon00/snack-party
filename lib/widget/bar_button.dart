@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/single_child_widget.dart';
 
 class BarButton extends StatelessWidget {
   final Widget child;
@@ -14,12 +13,14 @@ class BarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: child,
       style: ElevatedButton.styleFrom(
-          primary: Colors.indigoAccent[700],
-          fixedSize: const Size(300, 50),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+        primary: Colors.indigoAccent[700],
+        fixedSize: const Size(300, 50),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+      child: child,
     );
   }
 }

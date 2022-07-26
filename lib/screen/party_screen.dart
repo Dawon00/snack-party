@@ -124,7 +124,7 @@ class _PartyScreenState extends State<PartyScreen> {
                     ? SliverList(
                         delegate: SliverChildBuilderDelegate(
                             (c, i) => ListTile(
-                                  tileColor: Colors.blue.shade50,
+                                  tileColor: Colors.amber.shade50,
                                   contentPadding: const EdgeInsets.all(10),
                                   leading: const Icon(Icons.account_circle),
                                   title: Text(
