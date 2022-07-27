@@ -7,7 +7,7 @@
 <br/>[서다원](https://github.com/Dawon00)
 
 ### 📌프로젝트 설명
-
+혼자 밥먹는 외대생을 위한 식사 파티원 모집 어플
 
 ### 📌사용기술
 Flutter, Firebase
